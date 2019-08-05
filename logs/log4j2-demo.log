@@ -1,0 +1,9 @@
+[2019-08-04 22:53:28,069][WARN][main][myhr.aspect.LogAspect] testAspect方法开始执行>>>
+[2019-08-04 22:53:28,074][WARN][main][myhr.aspect.LogAspect] testAspect方法结束执行<>
+[2019-08-04 22:53:28,074][ERROR][main][myhr.aspect.LogAspect] testAspect方法返回：null
+[2019-08-04 22:54:43,255][WARN][http-nio-8080-exec-2][myhr.aspect.LogAspect] deleteBookById方法开始执行>>>
+[2019-08-04 22:54:43,258][WARN][http-nio-8080-exec-2][myhr.aspect.LogAspect] deleteBookById方法结束执行<>
+[2019-08-04 22:54:43,259][ERROR][http-nio-8080-exec-2][myhr.aspect.LogAspect] deleteBookById方法返回：delete book of which  id:46153
+[2019-08-04 23:03:34,627][WARN][main][myhr.aspect.LogAspect] testAspect方法开始执行>>>
+[2019-08-04 23:03:34,633][WARN][main][myhr.aspect.LogAspect] testAspect方法结束执行<>
+[2019-08-04 23:03:34,633][ERROR][main][myhr.aspect.LogAspect] testAspect方法返回：null

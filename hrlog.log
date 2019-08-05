@@ -1,0 +1,16 @@
+2019-08-04 20:49:02.620  INFO 2664 --- [main] myhr.MyhrApplicationTests                : Starting MyhrApplicationTests on pzr-pc01 with PID 2664 (started by pzr in D:\projects\eclipse\myhr)
+2019-08-04 20:49:02.622  INFO 2664 --- [main] myhr.MyhrApplicationTests                : No active profile set, falling back to default profiles: default
+2019-08-04 20:49:04.773  INFO 2664 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-04 20:49:05.449  INFO 2664 --- [main] myhr.MyhrApplicationTests                : Started MyhrApplicationTests in 3.226 seconds (JVM running for 4.2)
+2019-08-04 20:49:05.877  WARN 2664 --- [main] myhr.aspect.LogAspect                    : testAspect方法开始执行>>>
+2019-08-04 20:49:05.884  WARN 2664 --- [main] myhr.aspect.LogAspect                    : testAspect方法结束执行<>
+2019-08-04 20:49:05.884  WARN 2664 --- [main] myhr.aspect.LogAspect                    : testAspect方法返回：null
+2019-08-04 20:49:05.892  INFO 2664 --- [Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-04 20:49:52.171  INFO 736 --- [main] myhr.MyhrApplicationTests                : Starting MyhrApplicationTests on pzr-pc01 with PID 736 (started by pzr in D:\projects\eclipse\myhr)
+2019-08-04 20:49:52.172  INFO 736 --- [main] myhr.MyhrApplicationTests                : No active profile set, falling back to default profiles: default
+2019-08-04 20:49:54.345  INFO 736 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-04 20:49:54.981  INFO 736 --- [main] myhr.MyhrApplicationTests                : Started MyhrApplicationTests in 3.207 seconds (JVM running for 4.175)
+2019-08-04 20:49:55.431  WARN 736 --- [main] myhr.aspect.LogAspect                    : testAspect方法开始执行>>>
+2019-08-04 20:49:55.437  WARN 736 --- [main] myhr.aspect.LogAspect                    : testAspect方法结束执行<>
+2019-08-04 20:49:55.437 ERROR 736 --- [main] myhr.aspect.LogAspect                    : testAspect方法返回：null
+2019-08-04 20:49:55.445  INFO 736 --- [Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

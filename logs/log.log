@@ -1,0 +1,14 @@
+[2019-08-04 23:13:52][main][INFO ][myhr.MyhrApplicationTests.logStarting]--Starting MyhrApplicationTests on pzr-pc01 with PID 14984 (started by pzr in D:\projects\eclipse\myhr)
+[2019-08-04 23:13:52][main][INFO ][myhr.MyhrApplicationTests.logStartupProfileInfo]--No active profile set, falling back to default profiles: default
+[2019-08-04 23:13:55][main][INFO ][myhr.MyhrApplicationTests.logStarted]--Started MyhrApplicationTests in 3.394 seconds (JVM running for 5.122)
+[2019-08-04 23:13:55][main][INFO ][myhr.MyhrApplicationTests.contextLoads]--i am l4j2
+[2019-08-04 23:13:55][main][WARN ][myhr.aspect.LogAspect.befor]--testAspect方法开始执行>>>
+[2019-08-04 23:13:55][main][WARN ][myhr.aspect.LogAspect.after]--testAspect方法结束执行<>
+[2019-08-04 23:13:55][main][ERROR][myhr.aspect.LogAspect.afterReturn]--testAspect方法返回：null
+[2019-08-04 23:20:19][main][INFO ][myhr.MyhrApplicationTests.logStarting]--Starting MyhrApplicationTests on pzr-pc01 with PID 14808 (started by pzr in D:\projects\eclipse\myhr)
+[2019-08-04 23:20:19][main][INFO ][myhr.MyhrApplicationTests.logStartupProfileInfo]--No active profile set, falling back to default profiles: default
+[2019-08-04 23:20:22][main][INFO ][myhr.MyhrApplicationTests.logStarted]--Started MyhrApplicationTests in 3.147 seconds (JVM running for 4.865)
+[2019-08-04 23:20:22][main][INFO ][myhr.MyhrApplicationTests.contextLoads]--i am l4j2
+[2019-08-04 23:20:22][main][WARN ][myhr.aspect.LogAspect.befor]--testAspect方法开始执行>>>
+[2019-08-04 23:20:22][main][WARN ][myhr.aspect.LogAspect.after]--testAspect方法结束执行<>
+[2019-08-04 23:20:22][main][ERROR][myhr.aspect.LogAspect.afterReturn]--testAspect方法返回：null
