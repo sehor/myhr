@@ -7,3 +7,11 @@
 [2019-08-04 23:03:34,627][WARN][main][myhr.aspect.LogAspect] testAspect方法开始执行>>>
 [2019-08-04 23:03:34,633][WARN][main][myhr.aspect.LogAspect] testAspect方法结束执行<>
 [2019-08-04 23:03:34,633][ERROR][main][myhr.aspect.LogAspect] testAspect方法返回：null
+[2019-08-05 10:58:31,052][WARN][main][myhr.aspect.LogAspect] testAspect方法开始执行>>>
+[2019-08-05 10:58:31,060][WARN][main][myhr.aspect.LogAspect] testAspect方法结束执行<>
+[2019-08-05 10:58:31,061][ERROR][main][myhr.aspect.LogAspect] testAspect方法返回：null
+[2019-08-05 11:00:00,601][WARN][main][myhr.aspect.LogAspect] testAspect方法开始执行>>>
+[2019-08-05 11:00:00,609][WARN][main][myhr.aspect.LogAspect] testAspect方法结束执行<>
+[2019-08-05 11:00:00,609][ERROR][main][myhr.aspect.LogAspect] testAspect方法返回：null
+[2019-08-05 11:03:40,514][WARN][main][myhr.aspect.LogAspect] testAspect方法返回：null
+[2019-08-05 11:06:46,305][ERROR][main][myhr.aspect.LogAspect] testAspect抛出异常：bad thing happend!

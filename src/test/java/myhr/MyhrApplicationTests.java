@@ -25,7 +25,7 @@ public class MyhrApplicationTests {
 	@Autowired
 	TestAop ta;
 	@Test
-	public void contextLoads() {
+	public void contextLoads() throws Exception {
 		
 		/*
 		 * for (String favorite : me.getFavorites()) { log.info(favorite); }

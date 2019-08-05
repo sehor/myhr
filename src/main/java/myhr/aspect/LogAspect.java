@@ -30,26 +30,26 @@ public class LogAspect {
 	@Before(value = "pcl()")
 	public void befor(JoinPoint jp) {
 		String name=jp.getSignature().getName();
-		log.warn(name+"方法开始执行>>>");
+		log.info(name+"方法开始执行>>>");
 	}
 	
 	@After(value = "pcl()")
 	public void after(JoinPoint jp) {
 		String name=jp.getSignature().getName();
-		log.warn(name+"方法结束执行<>");
+		log.debug(name+"方法结束执行<>");
 	}
 	
 	@AfterReturning(value = "pcl()",returning = "result")
 	public void afterReturn(JoinPoint jp,Object result) {
 		String name=jp.getSignature().getName();
-		log.error(name+"方法返回："+result);
+		log.warn(name+"方法返回："+result);
 	}
 	
 	@AfterThrowing(value = "pcl()",throwing = "e")
 	public void aferThrowing(JoinPoint jp,Exception e) {
 		
 		String name=jp.getSignature().getName();
-		log.warn(name+"抛出异常："+e.getMessage());
+		log.error(name+"抛出异常："+e.getMessage());
 	}
 	
 	@Around(value = "pcl()")
