@@ -1,8 +1,6 @@
 package myhr.aspect;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
@@ -22,7 +20,7 @@ public class LogAspect {
 	
 	private final Logger log=LogManager.getLogger(LogAspect.class);
 
-	@Pointcut("execution(* myhr.controller.*.*(..))")
+	@Pointcut("execution(* norunaspect.myhr.controller.*.*(..))")
 	public void pcl() {
 		
 	}

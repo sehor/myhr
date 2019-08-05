@@ -9,7 +9,7 @@
 		<Console name="consoleAppender" target="SYSTEM_OUT">
 			<!--设置日志格式及颜色-->
 			<PatternLayout
-					pattern="%highlight{[%d{yyyy-MM-dd HH:mm:ss}][%t][%-5level][%c.%method]--%msg%n}{FATAL=red, ERROR=red, WARN=magenta, INFO=green, DEBUG=blue, TRACE=cyan}"
+					pattern="%highlight{[%d{yyyy-MM-dd HH:mm:ss}][%t][%-5level][%c.%method]:%n--%msg%n%n}{FATAL=red, ERROR=red, WARN=magenta, INFO=green, DEBUG=blue, TRACE=cyan}"
 					disableAnsi="false" noConsoleNoAnsi="false"/>
 		</Console>
 

@@ -2,10 +2,15 @@ package myhr.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import myhr.data.domain.Book;
 
 @RestController
 @RequestMapping("/book")
@@ -25,6 +30,19 @@ public class BookController {
 	public String deleteBookById(@PathVariable Long id) {
 		
 		return "delete book of which  id:"+String.valueOf(id);
+	}
+	
+	
+	@GetMapping("/hello")
+	public String hello(String name) {
+		
+		return "Hello,"+name;
+	}
+	
+	@PostMapping("/addBook")
+	public String addBook(@RequestBody Book book) {
+		
+		return book.toString();
 	}
 }
 
