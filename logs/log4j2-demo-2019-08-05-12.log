@@ -1,0 +1,5 @@
+[2019-08-06 14:02:24,972][WARN][restartedMain][org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2019-08-06 14:04:28,994][WARN][http-nio-8080-exec-8][myhr.controller.BookController] b1:[]
+[2019-08-06 14:04:28,995][WARN][http-nio-8080-exec-8][myhr.controller.BookController] b2:[myhr.data.domain.Book@64c10efc]
+[2019-08-06 14:04:28,995][WARN][http-nio-8080-exec-8][myhr.controller.BookController] b3:[myhr.data.domain.Book@54ae7052, myhr.data.domain.Book@64c10efc, myhr.data.domain.Book@5ea6ce7c]
+[2019-08-06 14:04:28,995][WARN][http-nio-8080-exec-8][myhr.controller.BookController] b4:myhr.data.domain.Book@7606c3e0
