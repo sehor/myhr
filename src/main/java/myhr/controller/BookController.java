@@ -1,5 +1,7 @@
 package myhr.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.scripting.bsh.BshScriptUtils.BshExecutionException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -157,22 +160,27 @@ public class BookController {
 	}
 
 	@PostMapping("/saveBooks")
-	public String saveBooks(HttpServletRequest hsr){
+	public String saveBooks(@RequestBody List<Book> books){
 
-		Map<String, String[]> map=hsr.getParameterMap();
-		for(Map.Entry<String,String[]> entry:map.entrySet()){
-
-			log.info(entry.getKey()+":");
-			for(String s:entry.getValue()){
-				log.info(s);
-			}
-		}
-
+		/*
+		 * Map<String, String[]> map=hsr.getParameterMap();
+		 * for(Map.Entry<String,String[]> entry:map.entrySet()){
+		 * 
+		 * log.info(entry.getKey()+":"); for(String s:entry.getValue()){ log.info(s); }
+		 * }
+		 * 
+		 * try { BufferedReader bf=hsr.getReader(); String s; StringBuilder sb=new
+		 * StringBuilder(); while((s=bf.readLine())!=null) sb.append(s);
+		 * log.info(sb.toString()); bf.close(); log.warn(object);
+		 * 
+		 * 
+		 * } catch (IOException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */
          //log.warn(hsr.getParameterMap());
-
-
-
-		//return  "saved "+bookService.saveBooks(books)+"books";
+        for(Book book:books) {
+        	 bookService.addBook(book);
+        }
 		return  "save book done";
 	}
 

@@ -44,3 +44,4 @@ build/
 
 #log files
 *.log
+/logs
