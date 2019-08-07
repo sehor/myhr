@@ -56,5 +56,11 @@ public class BookService {
 		
 		return bookRepository.findAll();
 	}
+
+	//save books list
+	public int saveBooks(List<Book> books){
+		books.forEach(book -> bookRepository.save(book));
+		return books.size();
+	}
 	
 }

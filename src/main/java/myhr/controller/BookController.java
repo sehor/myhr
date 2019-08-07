@@ -1,6 +1,7 @@
 package myhr.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import myhr.data.domain.Book;
 import myhr.service.book.BookService;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/book")
@@ -149,8 +152,30 @@ public class BookController {
 	
 	@GetMapping("/updateDiscription/{discription}")
 	public void updateDiscription(@PathVariable String discription) {
+
 		bookService.updateDiscription(discription);
 	}
+
+	@PostMapping("/saveBooks")
+	public String saveBooks(HttpServletRequest hsr){
+
+		Map<String, String[]> map=hsr.getParameterMap();
+		for(Map.Entry<String,String[]> entry:map.entrySet()){
+
+			log.info(entry.getKey()+":");
+			for(String s:entry.getValue()){
+				log.info(s);
+			}
+		}
+
+         //log.warn(hsr.getParameterMap());
+
+
+
+		//return  "saved "+bookService.saveBooks(books)+"books";
+		return  "save book done";
+	}
+
 	
 }
 
