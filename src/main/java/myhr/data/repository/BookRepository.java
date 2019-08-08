@@ -14,9 +14,13 @@ import myhr.data.domain.Book;
 @RepositoryRestResource
 public interface BookRepository extends JpaRepository<Book, Integer>,BookDataHelper {
 
+	@Query("select b from Book b where b.author like %?1%")
 	List<Book> findByAuthorLike(String author);
 	
 	List<Book> findByPriceGreaterThan(float minPrice);
+	
+	@Query("select b from Book b where b.id=?1")
+	Book findBookById(Integer id);
 	
 	@Query(value="select * from Book where id=(select max(id) from book)",nativeQuery=true)
 	Book getMaxIdBook();
