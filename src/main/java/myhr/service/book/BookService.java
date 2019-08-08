@@ -3,6 +3,9 @@ package myhr.service.book;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,18 +19,24 @@ public class BookService {
 	@Autowired
 	BookRepository bookRepository;
 	
-	public void addBook(Book book) {
+	@CachePut(value="bookCache",key="#result.id")
+	public Book addBook(Book book) {
 		
-		bookRepository.save(book);
+		return bookRepository.save(book);
 	}
 	
 	public Page<Book> getBookByPage(Pageable pageable){
 		return bookRepository.findAll(pageable);
 	}
 	
+	@Cacheable("bookCache")
 	public List<Book> getBookByAuthorLike(String author){
-		String sLike="%"+author+"%";
-		return bookRepository.findByAuthorLike(sLike);
+		return bookRepository.findByAuthorLike(author);
+	}
+	
+	@Cacheable("bookCache")
+	public Book findBookById(Integer id) {
+		return bookRepository.findBookById(id);
 	}
 	
 	public List<Book> getBookByPriceGreaterThan(float price){
@@ -61,6 +70,13 @@ public class BookService {
 	public int saveBooks(List<Book> books){
 		books.forEach(book -> bookRepository.save(book));
 		return books.size();
+	}
+	
+	
+	//delete a book by id
+	@CacheEvict("bookCache")
+	public void deleteById(Integer id) {
+		bookRepository.deleteById(id);
 	}
 	
 }

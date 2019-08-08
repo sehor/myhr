@@ -1,29 +1,23 @@
 package myhr.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.scripting.bsh.BshScriptUtils.BshExecutionException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import myhr.data.domain.Book;
 import myhr.service.book.BookService;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/book")
@@ -42,8 +36,8 @@ public class BookController {
 	//@DeleteMapping("/{id}")
 	//@CrossOrigin(value="http://localhost:8081",maxAge = 180,allowedHeaders = "*")
 	@RequestMapping(value="/{id}",method = RequestMethod.GET)
-	public String deleteBookById(@PathVariable Long id) {
-	
+	public String deleteBookById(@PathVariable Integer id) {
+	    bookService.deleteById(id);
 		return "delete book of which  id:"+String.valueOf(id);
 	}
 	
@@ -54,11 +48,26 @@ public class BookController {
 		return "Hello,"+name;
 	}
 	
+	//add a book
 	@PostMapping("/addBook")
-	public String addBook(@RequestBody Book book) {
+	public Book addBook(@RequestBody Book book) {
 		
-		return book.toString();
+		return bookService.addBook(book); //返回添加成功的Book（带id）
 	}
+	
+	//find books by author
+	@GetMapping("/findBooks/{author}")
+	public List<Book> findBookByAuthor(@PathVariable String author) {
+		return bookService.getBookByAuthorLike(author);
+	}
+	
+	//find a book by id
+	
+	@GetMapping("/findBook/{id}")
+	public Book findBookById(@PathVariable(value="id") Integer id) {
+		return bookService.findBookById(id);
+	}
+	
 	
 	@GetMapping("/findAll")
 	public List<Book> findAll() {
