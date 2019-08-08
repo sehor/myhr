@@ -35,7 +35,7 @@
 		<!-- 根日志设置 -->
 		<Root level="info">
 			<AppenderRef ref="consoleAppender" level="info"/>
-			<AppenderRef ref="fileAppender" level="warn"/>
+			<!--<AppenderRef ref="fileAppender" level="warn"/>-->
 		</Root>
 
 		<!--spring日志-->
