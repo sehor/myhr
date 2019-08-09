@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AccountExpiredException;
@@ -31,10 +32,14 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import myhr.service.UserService;
+
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled=true,securedEnabled=true)
 public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	UserService userService;
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -43,12 +48,15 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //super.configure(auth);
-        BCryptPasswordEncoder coder=new BCryptPasswordEncoder();
-        auth.inMemoryAuthentication().withUser("admin").password(coder.encode("admin123")).roles("ADMIN", "USER")
-                .and()
-                .withUser("guest").password(coder.encode("123")).roles("USER")
-                .and()
-                .withUser("dba").password(coder.encode("dba123")).roles("DBA");
+		/*
+		 * BCryptPasswordEncoder coder=new BCryptPasswordEncoder();
+		 * auth.inMemoryAuthentication().withUser("admin").password(coder.encode(
+		 * "admin123")).roles("ADMIN", "USER") .and()
+		 * .withUser("guest").password(coder.encode("123")).roles("USER") .and()
+		 * .withUser("dba").password(coder.encode("dba123")).roles("DBA");
+		 */
+    	
+    	auth.userDetailsService(userService);
        
         
     }
