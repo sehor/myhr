@@ -41,3 +41,7 @@ build/
 
 # Compiled class file
 *.class
+
+#log files
+*.log
+/logs
