@@ -8,6 +8,8 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import myhr.data.domain.Book;
@@ -34,6 +36,7 @@ public class BookService {
 		return bookRepository.findByAuthorLike(author);
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DBA')")
 	@Cacheable("bookCache")
 	public Book findBookById(Integer id) {
 		return bookRepository.findBookById(id);
@@ -61,6 +64,7 @@ public class BookService {
 	}
 	
 	
+	@Secured("ROLE_ADMIN")
 	public List<Book> findAllBook(){
 		
 		return bookRepository.findAll();
