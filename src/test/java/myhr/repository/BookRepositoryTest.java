@@ -26,10 +26,11 @@ public class BookRepositoryTest {
 
 	@Test
 	public void test1() {
-		List<Book> books=new ArrayList<>(); 
+		/*List<Book> books=new ArrayList<>();
 		
 		books=bookRepository.findByAuthorLike("name");
 		
-		books.forEach(b->log.warn(b.getName()));
+		books.forEach(b->log.warn(b.getName()));*/
+
 	}
 }

@@ -9,14 +9,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import myhr.config.componet.CustomAccessDecisionManger;
+import myhr.config.componet.CustomFilterInvocationSecurityMetadataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,6 +30,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
@@ -40,22 +46,35 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	CustomFilterInvocationSecurityMetadataSource  customFilterInvocationSecurityMetadataSource;
+	@Autowired
+	CustomAccessDecisionManger customAccessDecisionManger;
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+	RoleHierarchy roleHierarchy(){
+		RoleHierarchyImpl roleHierarchy=new RoleHierarchyImpl();
+		String hierarchy="ROLE_DBA>ROLE_ADMIN,ROLE_ADMIN>ROLE_USER,ROLE_USER>ROLE_GUEST";
+		roleHierarchy.setHierarchy(hierarchy);
+		return roleHierarchy;
+	}
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //super.configure(auth);
-		/*
-		 * BCryptPasswordEncoder coder=new BCryptPasswordEncoder();
-		 * auth.inMemoryAuthentication().withUser("admin").password(coder.encode(
-		 * "admin123")).roles("ADMIN", "USER") .and()
-		 * .withUser("guest").password(coder.encode("123")).roles("USER") .and()
-		 * .withUser("dba").password(coder.encode("dba123")).roles("DBA");
-		 */
-    	
+
+/*		  BCryptPasswordEncoder coder=new BCryptPasswordEncoder();
+		  System.out.print("admin123="+coder.encode("admin123"));
+		  auth.inMemoryAuthentication().withUser("admin").password(coder.encode(
+		 "admin123")).roles("ADMIN", "USER") .and()
+		 .withUser("guest").password(coder.encode("123")).roles("USER") .and()
+		 .withUser("dba").password(coder.encode("dba123")).roles("DBA");*/
+
     	auth.userDetailsService(userService);
        
         
@@ -65,10 +84,18 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                /*.antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").access("hasAnyRole('ADMIN','USER')")
                 .antMatchers("/dba/**").access("hasRole('ADMIN') or hasRole('DBA')")
-                .anyRequest().authenticated()
+                .anyRequest().authenticated()*/
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+					@Override
+					public <O extends FilterSecurityInterceptor> O postProcess(O o) {
+						o.setSecurityMetadataSource(customFilterInvocationSecurityMetadataSource);
+						o.setAccessDecisionManager(customAccessDecisionManger);
+						return o;
+					}
+				})
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
@@ -158,6 +185,15 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();
     }
-    
+
+/*    @Bean
+	CustomFilterInvocationSecurityMetadataSource csm(){
+    	return customFilterInvocationSecurityMetadataSource;
+	}
+
+	@Bean
+	CustomAccessDecisionManger cad(){
+    	return customAccessDecisionManger;
+	}*/
     
 }

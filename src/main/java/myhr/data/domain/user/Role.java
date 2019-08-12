@@ -15,7 +15,7 @@ public class Role {
 	@Column(nullable = false)
 	private String name;
     
-	//@Column(name="name_Zh")
+	@Column(name="name_zh")
 	private String nameZh;
 
 	public Integer getId() {

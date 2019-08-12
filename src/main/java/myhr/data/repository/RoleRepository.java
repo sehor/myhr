@@ -18,4 +18,6 @@ public interface RoleRepository extends JpaRepository<Role, Integer>{
 			,nativeQuery=true)
 	List<Role> findRolesByUserId(@Param("userId") Integer userId);
 
+	@Query(value = "select * from MenuRole as mr,Role as r where r.id=mr.rid and mr.mid=:menuId",nativeQuery = true)
+    List<Role> findByMid(@Param("menuId") Integer menuId);
 }

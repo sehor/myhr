@@ -71,16 +71,16 @@ public class BookController {
 	
 	@GetMapping("/findAll")
 	public List<Book> findAll() {
-		PageRequest pageable=PageRequest.of(2, 3);
+/*		PageRequest pageable=PageRequest.of(2, 3);
 		Page<Book> page=bookService.getBookByPage(pageable);
 		log.warn("总页数："+page.getTotalPages());
 		log.warn("总记录数：:"+page.getTotalElements());
 		log.warn("查询结果："+page.getContent());
 		log.warn("当前页数："+page.getNumber()+1);
 		log.warn("当前记录数："+page.getNumberOfElements());
-		log.warn("每页记录数："+page.getSize());
+		log.warn("每页记录数："+page.getSize());*/
 		
-		return bookService.findAllBook();
+		return bookService.findAllBook().subList(0,10);
 	}
 	
 	
@@ -191,6 +191,11 @@ public class BookController {
         	 bookService.addBook(book);
         }
 		return  "save book done";
+	}
+
+	@GetMapping("/addhuge")
+	public void addHuge(){
+      bookService.addHungBooks();
 	}
 
 	

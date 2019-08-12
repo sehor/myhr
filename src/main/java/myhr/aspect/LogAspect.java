@@ -14,13 +14,17 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 @Aspect
 public class LogAspect {
 	
 	private final Logger log=LogManager.getLogger(LogAspect.class);
+	private long start,end;
 
-	@Pointcut("execution(* norunaspect.myhr.controller.*.*(..))")
+
+	@Pointcut("execution(* myhr.controller.*.*(..))")
 	public void pcl() {
 		
 	}
@@ -29,28 +33,32 @@ public class LogAspect {
 	public void befor(JoinPoint jp) {
 		String name=jp.getSignature().getName();
 		log.info(name+"方法开始执行>>>");
+		start=new Date().getTime();
 	}
 	
 	@After(value = "pcl()")
 	public void after(JoinPoint jp) {
 		String name=jp.getSignature().getName();
 		log.debug(name+"方法结束执行<>");
+		end=new Date().getTime();
+		long timeCost=end-start;
+		log.warn("cost time:"+timeCost);
 	}
 	
-	@AfterReturning(value = "pcl()",returning = "result")
+	//@AfterReturning(value = "pcl()",returning = "result")
 	public void afterReturn(JoinPoint jp,Object result) {
 		String name=jp.getSignature().getName();
 		log.warn(name+"方法返回："+result);
 	}
 	
-	@AfterThrowing(value = "pcl()",throwing = "e")
+	//@AfterThrowing(value = "pcl()",throwing = "e")
 	public void aferThrowing(JoinPoint jp,Exception e) {
 		
 		String name=jp.getSignature().getName();
 		log.error(name+"抛出异常："+e.getMessage());
 	}
 	
-	@Around(value = "pcl()")
+	//@Around(value = "pcl()")
 	public Object around(ProceedingJoinPoint pjp) throws Throwable {
 		return pjp.proceed();
 	}

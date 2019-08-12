@@ -1,5 +1,7 @@
 package myhr.service.book;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import myhr.data.repository.BookRepository;
 
 @Service
 public class BookService {
+
 
 	@Autowired
 	BookRepository bookRepository;
@@ -66,8 +69,19 @@ public class BookService {
 	
 	@Secured("ROLE_ADMIN")
 	public List<Book> findAllBook(){
-		
-		return bookRepository.findAll();
+		List<Book> books=bookRepository.findByAuthorLike("1");
+		List<Book> books1=new ArrayList<>();
+		long start=new Date().getTime();
+		books.forEach(book -> {
+			if(book.getName().contains("1")){
+				books1.add(book);
+			}
+
+		});
+
+		long end=new Date().getTime();
+		System.out.println("filter cost time: "+(end-start) +"  size: "+books.size());
+		return books1;
 	}
 
 	//save books list
@@ -82,5 +96,15 @@ public class BookService {
 	public void deleteById(Integer id) {
 		bookRepository.deleteById(id);
 	}
-	
+
+	//insert a huge number for test
+	public void addHungBooks(){
+		for(int i=1;i<100000;i++){
+			Book book=new Book();
+			book.setName("name"+i);
+			book.setAuthor("author"+i);
+			book.setDiscription("description"+i);
+			bookRepository.save(book);
+		}
+	}
 }

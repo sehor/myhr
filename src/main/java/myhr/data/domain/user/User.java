@@ -33,7 +33,7 @@ public class User implements UserDetails{
 	private boolean locked;
 
 	@Transient
-	private List<Role> roles;
+	private List<Role> roles=new ArrayList<Role>();
 	
 	public Integer getId() {
 		return id;

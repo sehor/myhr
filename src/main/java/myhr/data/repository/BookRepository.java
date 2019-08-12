@@ -30,4 +30,6 @@ public interface BookRepository extends JpaRepository<Book, Integer>,BookDataHel
 	
 	@Query("select b from Book b where b.id<?1 and b.name like %?2%")
 	List<Book> getBookByIdAndName(Integer id,String bookName);
+
+
 }
